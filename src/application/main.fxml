@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity"
+	minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
+	prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+	fx:controller="application.Controller">
+	<top>
+		<MenuBar BorderPane.alignment="CENTER">
+			<menus>
+				<Menu mnemonicParsing="false" text="好友管理">
+					<items>
+						<MenuItem mnemonicParsing="false" text="添加好友..." onAction="#showAddFriendDialog"/>
+					</items>
+				</Menu>
+				<Menu mnemonicParsing="false" text="我的共享">
+					<items>
+						<MenuItem mnemonicParsing="false" text="共享一个文件..." onAction="#showShareFileDialog"/>
+						<MenuItem mnemonicParsing="false" text="查看我的共享..." />
+					</items>
+				</Menu>
+				<Menu mnemonicParsing="false" text="下载管理">
+					<items>
+						<MenuItem mnemonicParsing="false" text="About" />
+					</items>
+				</Menu>
+				<Menu mnemonicParsing="false" text="帮助">
+					<items>
+						<MenuItem mnemonicParsing="false" text="Action 1" />
+					</items>
+				</Menu>
+			</menus>
+		</MenuBar>
+	</top>
+	<center>
+		<TabPane prefHeight="375.0" prefWidth="321.0"
+			tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+			<tabs>
+				<Tab text="共享文件">
+					<content>
+						<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0"
+							prefWidth="200.0">
+							<opaqueInsets>
+								<Insets left="10.0" />
+							</opaqueInsets>
+							<children>
+								<ListView fx:id="sharedFilesListView" prefHeight="346.0"
+									prefWidth="395.0" AnchorPane.bottomAnchor="0.0"
+									AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+									AnchorPane.topAnchor="0.0" />
+							</children>
+						</AnchorPane>
+					</content>
+				</Tab>
+				<Tab text="会话">
+					<content>
+						<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0"
+							prefWidth="200.0">
+							<children>
+								<SplitPane dividerPositions="0.7063953488372093"
+									layoutX="95.0" layoutY="48.0" orientation="VERTICAL"
+									prefHeight="346.0" prefWidth="395.0" AnchorPane.bottomAnchor="0.0"
+									AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+									AnchorPane.topAnchor="0.0">
+									<items>
+										<AnchorPane minHeight="0.0" minWidth="0.0"
+											prefHeight="100.0" prefWidth="160.0"
+											SplitPane.resizableWithParent="false" />
+										<AnchorPane minHeight="0.0" minWidth="0.0"
+											prefHeight="100.0" prefWidth="160.0" />
+									</items>
+								</SplitPane>
+							</children>
+						</AnchorPane>
+					</content>
+				</Tab>
+			</tabs>
+			<opaqueInsets>
+				<Insets />
+			</opaqueInsets>
+			<BorderPane.margin>
+				<Insets left="5.0" />
+			</BorderPane.margin>
+		</TabPane>
+	</center>
+	<left>
+		<BorderPane prefHeight="200.0" prefWidth="200.0"
+			BorderPane.alignment="CENTER">
+			<top>
+				<TextField fx:id="searchFriendTextField"
+					BorderPane.alignment="CENTER" />
+			</top>
+			<center>
+				<!-- <ScrollPane fx:id="friendsScrollPane" prefViewportHeight="352.0" 
+					prefViewportWidth="200.0"> <content> <TreeView fx:id="friendsTreeView" prefHeight="337.0" 
+					prefWidth="200.0" style="-fx-padding: 20,20,20,20;" BorderPane.alignment="CENTER" 
+					/> </content> </ScrollPane> <TreeView fx:id="friendsTreeView" prefHeight="337.0" 
+					prefWidth="200.0" style="-fx-padding: 20,20,20,20;" BorderPane.alignment="CENTER" 
+					/> -->
+
+				<TreeView fx:id="friendsTreeView" prefHeight="200.0"
+					prefWidth="200.0" BorderPane.alignment="CENTER">
+					<BorderPane.margin>
+						<Insets top="5.0" />
+					</BorderPane.margin>
+				</TreeView>
+			</center>
+		</BorderPane>
+	</left>
+</BorderPane>
