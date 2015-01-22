@@ -10,10 +10,10 @@ import java.util.Random;
 
 import javafx.concurrent.Task;
 import net.tomp2p.futures.FutureBootstrap;
-import net.tomp2p.futures.FutureDHT;
+//import net.tomp2p.futures.FutureDHT;
 import net.tomp2p.futures.FutureDiscover;
 import net.tomp2p.p2p.Peer;
-import net.tomp2p.p2p.PeerMaker;
+//import net.tomp2p.p2p.PeerMaker;
 import net.tomp2p.peers.Number160;
 import net.tomp2p.storage.Data;
 
@@ -76,23 +76,27 @@ public class User {
 	}
 
 	private void p2pSetup(){
-		Random r = new Random();
-		try {
-			peer = new PeerMaker(new Number160(r)).setPorts(4000).makeAndListen();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-        FutureBootstrap fb = peer.bootstrap().setBroadcast().setPorts(4001).start();
-        fb.awaitUninterruptibly();
-        if (fb.getBootstrapTo() != null) {
-            peer.discover().setPeerAddress(fb.getBootstrapTo().iterator().next()).start().awaitUninterruptibly();
-        }
-        
-        ip = getLocalIPAddress();
-        JSONObject json = new JSONObject();
-        json.put("ip", ip);
-        json.put("nickName", nickName);
-        dhtPut(Number160.createHash(email), json.toJSONString());
+//		Random r = new Random();
+//		try {
+//			peer = new PeerMaker(new Number160(r)).setPorts(4000).makeAndListen();
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+//        FutureBootstrap fb = peer.bootstrap().setBroadcast().setPorts(4001).start();
+//        fb.awaitUninterruptibly();
+//        if (fb.getBootstrapTo() != null) {
+//            peer.discover().setPeerAddress(fb.getBootstrapTo().iterator().next()).start().awaitUninterruptibly();
+//        }
+//        
+//        ip = getLocalIPAddress();
+//        JSONObject json = new JSONObject();
+//        json.put("ip", ip);
+//        json.put("nickName", nickName);
+//        dhtPut(Number160.createHash(email), json.toJSONString());
+	}
+	
+	public String getIp(){
+		return ip;
 	}
 
 	// TODO 换一种方式实现
@@ -162,42 +166,42 @@ public class User {
 	}
 	
 	public boolean addFriend(String email){
-		JSONObject json = getFriendInfo(email);
-		String ip = json.getString("ip");
-		InetAddress address = null;
-		try {
-			address = Inet4Address.getByName(ip);
-		} catch (UnknownHostException e) {
-			e.printStackTrace();
-		}
-		FutureDiscover futureDiscover = peer.discover().setInetAddress(address).setPorts(4000).start();
-		futureDiscover.awaitUninterruptibly();
-		
+//		JSONObject json = getFriendInfo(email);
+//		String ip = json.getString("ip");
+//		InetAddress address = null;
+//		try {
+//			address = Inet4Address.getByName(ip);
+//		} catch (UnknownHostException e) {
+//			e.printStackTrace();
+//		}
+//		FutureDiscover futureDiscover = peer.discover().setInetAddress(address).setPorts(4000).start();
+//		futureDiscover.awaitUninterruptibly();
+//		
 		return true;
 	}
 
 	//DHT method get/put
 	private Object dhtGet(Number160 key) {
-		FutureDHT futureDHT = peer.get(key).start();
-		futureDHT.awaitUninterruptibly();
-		if (futureDHT.isSuccess()) {
-			try {
-				return futureDHT.getData().getObject();
-			} catch (ClassNotFoundException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
+//		FutureDHT futureDHT = peer.get(key).start();
+//		futureDHT.awaitUninterruptibly();
+//		if (futureDHT.isSuccess()) {
+//			try {
+//				return futureDHT.getData().getObject();
+//			} catch (ClassNotFoundException e) {
+//				e.printStackTrace();
+//			} catch (IOException e) {
+//				e.printStackTrace();
+//			}
+//		}
 		return null;
 	}
 
 	private void dhtPut(Number160 key, Object value) {
-		try {
-			peer.put(key).setData(new Data(value)).start()
-					.awaitUninterruptibly();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+//		try {
+//			peer.put(key).setData(new Data(value)).start()
+//					.awaitUninterruptibly();
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
 	}
 }
